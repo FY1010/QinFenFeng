@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .wrap {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #999;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-gap: 20px;
+      padding: 20px;
+    }
+
+    [class*="col-"] {
+      box-sizing: border-box;
+      height: 50px;
+      background-color: #eee;
+      border: 1px solid #999;
+    }
+
+    @media screen and (max-width: 768px) {
+      .col-sm-2 {
+        grid-column: span 2;
+      }
+
+      .col-sm-3 {
+        grid-column: span 3;
+      }
+
+      .col-sm-6 {
+        grid-column: span 6;
+      }
+
+      .col-sm-12 {
+        grid-column: span 12;
+      }
+    }
+
+    @media screen and (min-width: 769px) {
+      .col-md-1 {
+        grid-column: span 1;
+      }
+
+      .col-md-2 {
+        grid-column: span 2;
+      }
+
+      .col-md-3 {
+        grid-column: span 3;
+      }
+
+      .col-md-4 {
+        grid-column: span 4;
+      }
+
+      .col-md-6 {
+        grid-column: span 6;
+      }
+
+      .col-md-12 {
+        grid-column: span 12;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="col-md-4 col-sm-6"></div>
+  <div class="col-md-4 col-sm-6"></div>
+  <div class="col-md-4 col-sm-12"></div>
+
+  <div class="col-md-3 col-sm-3"></div>
+  <div class="col-md-6 col-sm-6"></div>
+  <div class="col-md-3 col-sm-3"></div>
+
+  <div class="col-md-1 col-sm-2"></div>
+  <div class="col-md-1 col-sm-2"></div>
+  <div class="col-md-2 col-sm-8"></div>
+  <div class="col-md-2 col-sm-3"></div>
+  <div class="col-md-6 col-sm-3"></div>
+</div>
+
+</body>
+</html>

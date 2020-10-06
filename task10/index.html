@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .wrap {
+      display: flex;
+      margin: 0 auto;
+      width: 100%;
+      justify-content: space-between;
+      border: 1px solid red;
+    }
+
+    .wrap .item {
+      box-sizing: border-box;
+      width: 150px;
+      max-width: 150px;
+      border: 1px solid red;
+      padding: 20px;
+    }
+
+    @media screen and (min-width: 641px) {
+      .wrap {
+        align-items: center;
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      .wrap {
+        flex-wrap: wrap;
+      }
+      .wrap .item {
+        min-width: 33.3%;
+      }
+      .wrap .special {
+        order: -1;
+      }
+    }
+
+    .wrap .item:nth-child(1) {
+      height: 120px;
+    }
+
+    .wrap .item:nth-child(2) {
+      height: 100px;
+    }
+
+    .wrap .item:nth-child(3) {
+      height: 40px;
+    }
+
+    .wrap .item:nth-child(4) {
+      height: 200px;
+      border: 1px solid blue;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="special item"></div>
+</div>
+</body>
+</html>
