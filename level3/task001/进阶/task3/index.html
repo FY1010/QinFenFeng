@@ -2,9 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Title</title>
+  <link rel="stylesheet" href="../../style/globalStyle.css">
+  <style>
+    .item {
+      padding: 1em 2em;
+      display: inline-block;
+      margin: 10px;
+      color: #fff;
+      background-color: #aefaae;
+    }
+
+    .active {
+      background-color: #07fa17;
+    }
+  </style>
 </head>
 <body>
-$END$
+<textarea class="insert-input" cols="30" rows="10"></textarea>
+<button class="insert-btn">插入</button>
+<button class="query-btn">查询</button>
+<input type="text" class="query-input">
+
+<div class="wrap"></div>
+<script src="task3.js"></script>
+<script>
+  const $textarea = document.querySelector('.insert-input')
+  const $query = document.querySelector('.query-input')
+  document.querySelector('.insert-btn').onclick = e => {
+    queryItems.insert($textarea.value)
+  }
+  document.querySelector('.query-btn').onclick = e => {
+    queryItems.query($query.value)
+  }
+
+  const queryItems = new QueryItems(document.querySelector('.wrap'))
+</script>
 </body>
 </html>

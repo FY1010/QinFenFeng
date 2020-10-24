@@ -3,13 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <link rel="stylesheet" href="../../style/globalStyle.css">
+  <style>
+    body {
+      background-color: #f3f3f3;
+    }
+
+    .wrap {
+      display: flex;
+    }
+
+    .item {
+      background-color: #fff;
+      margin: 10px;
+      box-shadow: 0 0 15px #e1e1e1;
+      padding: 1em;
+      cursor: pointer;
+    }
+
+    input:focus {
+      box-shadow: 0 0 15px #dfdfdf;
+    }
+
+    button:active {
+      box-shadow: 0 0 15px #dfdfdf;
+      background-color: grey;
+      color: #fff;
+      outline: none;
+    }
+  </style>
 </head>
 <body>
-<input type="text" placeholder="请输入数字">
-<button>左侧入</button>
-<button>右侧入</button>
+<input type="text" placeholder="请输入数字" id="val">
+<button onclick="list.input('unshift')">左侧入</button>
+<button onclick="list.input('push')">右侧入</button>
 
-<button>左侧出</button>
-<button>右侧出</button>
+<button onclick="list.shift()">左侧出</button>
+<button onclick="list.pop()">右侧出</button>
+
+<div class="wrap"></div>
+
+<script src="task1.js"></script>
+<script>
+  const $wrap = document.querySelector('.wrap')
+  const $input = document.querySelector('#val')
+  const list = new List($wrap)
+
+  $input.oninput = e => {
+    list.value = e.target.value
+  }
+
+</script>
 </body>
 </html>

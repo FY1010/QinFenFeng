@@ -2,9 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Title</title>
+  <link rel="stylesheet" href="../../style/globalStyle.css">
+  <style>
+    .wrap {
+      height: 500px;
+      margin: 50px auto;
+      box-shadow: 0 20px 50px #c6c6c6;
+      padding: 10px;
+      box-sizing: border-box;
+      align-content: flex-end;
+      align-items: flex-end;
+      display: flex;
+    }
+
+    .item {
+      width: 2%;
+      margin: 2px;
+      background-color: #cbffd0;
+    }
+
+    .item:nth-child(4n+1) {
+      background-color: #fff8ac;
+    }
+
+    .item:nth-child(4n+2) {
+      background-color: #dbf7ff;
+    }
+
+    .item:nth-child(4n+3) {
+      background-color: #ffe1f8;
+    }
+
+    .curr {
+      background-color: #9d8bff !important;
+    }
+
+    .active {
+      background-color: #ff5e50 !important;
+    }
+
+    .row-margin {
+      margin: 0 10px;
+      display: inline-block;
+    }
+
+  </style>
 </head>
 <body>
-$END$
+<input type="text" placeholder="请输入数字" id="val">
+<!-- input作为中间件拦截输入合法并且判断是否在排序中-->
+<button onclick="_list.input('unshift')">左侧入</button>
+<button onclick="_list.input('push')">右侧入</button>
+
+<!-- 中间件out拦截是为了在排序时防止出栈，虽然出栈也不会影响结果但个人不喜欢-->
+<button onclick="_list.use('shift')">左侧出</button>
+<button onclick="_list.use('pop')">右侧出</button>
+
+<div class="row-margin"></div>
+
+<button onclick="_list.use('putRandomData')">随机五十个</button>
+<button onclick="_list.sort('bubbleSort')">冒泡排序</button>
+<button onclick="_list.sort('quickSort')">快速排序</button>
+
+<div class="row-margin"></div>
+
+<input type="text" id="msInput" placeholder="设置延迟" value="30">
+<span>ms</span>
+
+<div class="wrap"></div>
+
+<script src="../task1/task1.js"></script>
+<script src="task2.js"></script>
+<script>
+  const $wrap = document.querySelector('.wrap')
+  const $input = document.querySelector('#val')
+  const $msCounter = document.querySelector('#msInput')
+
+  const _list = new ListExtended({
+    elem: $wrap,
+    input: $input,
+    msCounter: $msCounter
+  })
+
+</script>
 </body>
 </html>

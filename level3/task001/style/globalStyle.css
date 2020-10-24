@@ -1,0 +1,40 @@
+.hide {
+  display: none;
+}
+
+.toast {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  padding: 1em;
+  background-color: #fff;
+  color: grey;
+  box-shadow: 0 10px 15px #b4b4b4;
+  animation: toast 3s ease-out;
+}
+
+@keyframes toast {
+  0% {
+    visibility: visible;
+    top: 0;
+  }
+  10% {
+    visibility: visible;
+    top: 10%;
+  }
+  90% {
+    visibility: visible;
+    transform: translateX(-50%);
+    top: 10%;
+  }
+  100% {
+    transform: translateX(-50%) scale(0);
+    visibility: hidden;
+  }
+}
+
+input:focus, textarea:focus {
+  outline: 3px solid #aefaae;
+}

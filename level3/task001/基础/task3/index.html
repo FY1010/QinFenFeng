@@ -1,0 +1,122 @@
+<!DOCTYPE>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>IFE JavaScript Task 01</title>
+  <script src="task.js"></script>
+  <style>
+    .toast {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      visibility: hidden;
+      padding: 1em;
+      background-color: #fff;
+      color: grey;
+      box-shadow: 0 10px 15px #b4b4b4;
+      animation: toast 3s ease-out;
+    }
+    @keyframes toast {
+      0% {
+        visibility: visible;
+        top: 0;
+      }
+      10% {
+        visibility: visible;
+        top: 10%;
+      }
+      90% {
+        visibility: visible;
+        transform: translateX(-50%);
+        top: 10%;
+      }
+      100% {
+        transform: translateX(-50%) scale(0);
+        visibility: hidden;
+      }
+    }
+  </style>
+</head>
+<body>
+<div>
+  <label>城市名称：<input id="aqi-city-input" type="text"></label><br>
+  <label>空气质量指数：<input id="aqi-value-input" type="text"></label><br>
+  <button id="add-btn">确认添加</button>
+</div>
+<table id="aqi-table">
+    <tr>
+      <td>城市</td><td>空气质量</td><td>操作</td>
+    </tr>
+    <!--<tr>
+      <td>北京</td><td>90</td><td><button>删除</button></td>
+    </tr>
+    <tr>
+      <td>北京</td><td>90</td><td><button>删除</button></td>
+    </tr>-->
+</table>
+
+<script>
+  (function (doc) {
+    function newTd(content) {
+      const $td = doc.createElement('td');
+      $td.textContent = content;
+      return $td;
+    }
+
+    function createNewItem(cityName, airCondition, container) {
+      const $tr = doc.createElement('tr');
+      const $btn = doc.createElement('button');
+      $btn.textContent = '删除';
+      $btn.onclick = e => {
+        const parentNode = e.target.parentNode.parentNode;
+        parentNode.removeChild(e.target.parentNode);
+      }
+
+      $tr.appendChild(newTd(cityName));
+      $tr.appendChild(newTd(airCondition));
+      $tr.appendChild($btn);
+
+      container.appendChild($tr)
+    }
+
+    function isValidValue(text) { //没学过正则，这个正则是网上扒的
+      return  /[a-zA-Z\u4E00-\u9FA5]+$/.test(text);
+    }
+
+    function warn(msg) {
+      const $toast = doc.createElement('div');
+      $toast.classList.add('toast');
+      $toast.textContent = msg;
+      doc.body.appendChild($toast);
+      setTimeout(() => {
+        doc.body.removeChild($toast)
+      }, 3000)
+    }
+
+    const $table = doc.querySelector('#aqi-table');
+    const $cityName = doc.querySelector('#aqi-city-input');
+    const $airCondition = doc.querySelector('#aqi-value-input');
+    const $addBtn = doc.querySelector('#add-btn');
+
+    $addBtn.onclick = e => {
+      const cityName = $cityName.value.trim();
+      const airCondition = $airCondition.value.trim();
+      if (!cityName || !airCondition) {
+        warn('输入不能为空');
+        return;
+      }
+      if (!isValidValue(cityName)) {
+        warn('城市名必须为汉字或英文字符');
+        return;
+      }
+      if (isNaN(Number(airCondition))) {
+        warn('空气质量必须为整数')
+        return;
+      }
+      createNewItem(cityName, airCondition, $table);
+    }
+  })(document)
+</script>
+</body>
+</html>
